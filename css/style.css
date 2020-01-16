@@ -1,0 +1,23 @@
+@charset 'UTF-8';
+
+.wrapper {width:500px; margin:100px auto; font-size:14px;}
+.input-area {width:100%;}
+.input-area .input-box {width:100%; height:50px; padding:0 2%; border:1px solid #cacaca;}
+.list-area {margin-top:50px;}
+.list-area li {cursor:pointer; position:relative; height:40px; line-height:40px;}
+.list-area li::after {content:''; display:block; clear:both; width:100%; border-bottom:1px solid #e0e0e0;}
+.list-area li > p {position:relative; padding:0 4%;}
+.list-area .check {position:absolute; top:0; left:0; width:20px;}
+.list-area .btn-list-delete {opacity:0; position:absolute; top:10px; right:0; width:20px; color:#f5b2b2;}
+.list-area li:hover::after {animation:lineMotion ease-in .4s; border-bottom:1px solid #f5b2b2;}
+.list-area li:hover .btn-list-delete {opacity:1; transition:opacity ease-in .4s;}
+
+@keyframes lineMotion {
+    0% {
+        width:1px;
+    }
+    100% {
+        width:100%;
+
+    }
+}
