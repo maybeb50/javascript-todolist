@@ -1,28 +1,44 @@
 (function(window, $) {
     $(document).ready(function() {
+        var listParent = $('.list-area');
+
+        function listChecked(_list) {
+            listParent.append(_list);
+        }
 
         function listCheck() {
             var isCheck = $(this).find('.check').length;
             if(!isCheck) {
                 $(this).prepend('<span class="check">&#x2713;</span>');
+                listChecked(this);
             } else {
                 $(this).find('.check').remove();
+                listParent.prepend($(this));
             };
         }
         
-        function listDelete() {
+        function listDelete(event) {
+            event.stopPropagation();
             $(this).parent().remove();
         }
 
         function listAdd(_this) {
             var inputValue = $(_this).val(); 
-            var listParent = $('.list-area');
             var list = '<li class="list-item">'+
                           '<p>'+inputValue+'</p>'+
                           '<button type="button" class="btn-list-delete">&#x2715;</button>'+
                        '</li>';
+            var isError = $('.input-area').find('.error').length;
 
-            listParent.append(list);
+            if(inputValue == '') {               
+                if(!isError) {
+                    // 중복된 에러 메시지 제어
+                    $('.input-area').append('<p class="error">Please enter a list!</p>');
+                };
+            } else {
+                listParent.prepend(list);
+                $('.input-area').find('.error').remove();
+            };
         }
 
         function init() {
